@@ -16,5 +16,5 @@ fn main() {
 ['/index']
 pub fn (mut app App) index() vweb.Result {
     hello := "hello from "+os.hostname() or {'unknown'}
-	return app.text(hello)
+	return app.text(hello+"\n")
 }

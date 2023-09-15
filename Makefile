@@ -1,6 +1,6 @@
 build:
-	v -o webserver main.v
-	./webserver
+	v -o vhelloworld main.v
+	./vhelloworld
 
 docker:
 	docker build -t zwindler/vhelloworld:latest .
