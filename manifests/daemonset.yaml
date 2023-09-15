@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: simple-webserver-daemonset
+spec:
+  selector:
+    matchLabels:
+      app: simple-webserver
+  template:
+    metadata:
+      labels:
+        app: simple-webserver
+    spec:
+      containers:
+      - name: simple-webserver
+        image: zwindler/vhelloworld:latest
+        ports:
+        - containerPort: 8081
+        imagePullPolicy: Always 
