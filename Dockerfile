@@ -3,6 +3,8 @@ FROM ubuntu:22.04
 RUN apt update && \
   apt install libatomic1 libc6 -y && \
   rm -rf /var/lib/apt/lists/*
-COPY vhelloworld /vhelloworld
+COPY vhelloworld /app/vhelloworld
+COPY templates /app/templates
 EXPOSE 8081
-CMD ["/vhelloworld"]
+WORKDIR "/app"
+CMD ["/app/vhelloworld"]
