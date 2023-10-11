@@ -1,4 +1,3 @@
-// main.v
 module main
 
 import vweb
@@ -9,12 +8,23 @@ struct App {
 }
 
 fn main() {
-	app := App{}
-	vweb.run(app, 8081)
+    vweb.run_at(new_app(), vweb.RunParams{
+        port: 8081
+    }) or { panic(err) }
 }
 
-['/index']
-pub fn (mut app App) index() vweb.Result {
-    hello := "hello from "+os.hostname() or {'unknown'}
-	return app.text(hello+"\n")
+fn new_app() &App {
+    mut app := &App{}
+    // makes all static files available.
+    app.mount_static_folder_at(os.resource_abs_path('.'), '/')
+    return app
+}
+
+['/']
+pub fn (mut app App) page_home() vweb.Result {
+    // all this constants can be accessed by src/templates/page/home.html file.
+    page_title := 'vhelloworld'
+	host := os.hostname() or {'unknown'}
+
+    return $vweb.html()
 }
