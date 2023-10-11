@@ -1,5 +1,5 @@
 build:
-	v -o vhelloworld main.v
+	v -o vhelloworld .
 	./vhelloworld
 
 docker:
